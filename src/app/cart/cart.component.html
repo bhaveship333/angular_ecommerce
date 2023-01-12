@@ -1,0 +1,31 @@
+<!-- <p>cart works!</p> -->
+<div class="container " id="latest-products">
+    <div class="">
+        <div *ngFor="let product of showingthiscard; let i = index" class="product-card border me-3 row mb-4 rounded">
+            <div class="col-6 p-4">
+                <h2>Name of Product:  {{product.prodname}}</h2>
+                <h5>Descrition</h5>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam quos laborum illo, officiis mollitia tempora optio. Laborum officia dolorum consequatur repudiandae ipsam quisquam doloribus perspiciatis nostrum autem adipisci, nam quae! Ex voluptate nihil minus culpa optio velit tenetur, voluptatem beatae odio blanditiis quibusdam veritatis tempora quam magni, facilis quae excepturi.</p>
+            </div>
+           <div class="col-6 p-4 border">
+            <div class="product-card-img">
+                <img src="{{product.img1}}" alt="img">
+                <img src="{{product.img2}}" alt="img">
+            </div>
+            <div class="product-card-info text-center">
+                
+                <div class="product-card-name">
+                    {{product.prodname}}
+                </div>
+                <div class="product-card-price">
+                    <span><del> {{product.price1}} </del></span>
+                    <span class="curr-price">{{product.price2}}</span>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+   <div class="text-center">
+    <button class="btn btn-primary">Buy Now</button>
+   </div>
+</div>

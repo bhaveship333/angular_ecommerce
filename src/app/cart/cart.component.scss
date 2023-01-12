@@ -1,0 +1,17 @@
+
+.product-card-img {
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card-img img {
+    max-height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.product-card-img img:nth-child(2) {
+    display: none;
+}
