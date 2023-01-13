@@ -9,7 +9,7 @@ import { CartdataService } from '../cartdata.service';
 export class CartComponent implements OnInit {
   cartData:any = []
   slide_index = 0
-  // indexValue = 0;
+  noDataAva = false;
   slide_play = true
   mySet: any = new Set()
   arr: any = [0,1,2]
@@ -52,8 +52,15 @@ export class CartComponent implements OnInit {
   constructor(private data: CartdataService) { }
 
   ngOnInit(): void {
+   
     // debugger
     this.data.shareData.subscribe(data => this.cartData = data)
+    if(this.cartData.length == 0){
+      this.noDataAva = false;
+    }
+    else{
+      this.noDataAva = true;
+    }
     console.log(this.cartData);
     this.showData();
     localStorage.setItem("arrray", this.arr)
@@ -63,7 +70,6 @@ export class CartComponent implements OnInit {
     // this.cartData = this.cartData
     for(var i = 0; i < this.cartData.length; i++){
       this.cardsData.filter((item) => {
-        // debugger
         if(item.id == this.cartData[i]){
           this.showingthiscard.push(item)
           console.log(this.showingthiscard);

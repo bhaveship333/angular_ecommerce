@@ -1,5 +1,5 @@
 <!-- <p>cart works!</p> -->
-<div class="container " id="latest-products">
+<div *ngIf="noDataAva" class="container " id="latest-products">
     <div class="">
         <div *ngFor="let product of showingthiscard; let i = index" class="product-card border me-3 row mb-4 rounded">
             <div class="col-6 p-4">
@@ -28,4 +28,7 @@
    <div class="text-center">
     <button class="btn btn-primary">Buy Now</button>
    </div>
+</div>
+<div *ngIf="!noDataAva" class="text-center" >
+    <h2>Please add Product in Your Cart</h2>
 </div>
