@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartdataService } from '../cartdata.service';
 
@@ -49,7 +50,7 @@ export class CartComponent implements OnInit {
       price2: '$200'
     }
   ]
-  constructor(private data: CartdataService) { }
+  constructor(private data: CartdataService, private http: HttpClient) { }
 
   ngOnInit(): void {
    
@@ -77,6 +78,19 @@ export class CartComponent implements OnInit {
       })
     }    
   }
+  onBuyBtn(){
+    // const data = {
+    //   id: 3,
+    //   img1: 'assets/images/kisspng-beats-electronics-headphones-apple-beats-studio-red-headphones.png',
+    //   img2: 'assets/images/JBL_E55BT_KEY_RED_6063_FS_x1-1605x1605px.webp',
+    //   prodname: 'Data posted',
+    //   price1: '$700',
+    //   price2: '$200'
+    // }
+    this.http.post('https://perfect-gown-bear.cyclic.app/show', this.showingthiscard ).subscribe((res)=>{
+      console.log(res);
+    })
+  }
 
 
   hideAllSlide = () => {
@@ -98,5 +112,6 @@ export class CartComponent implements OnInit {
     this.prevSlide()
     this.showSlide()
   }
+
  
 }

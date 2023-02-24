@@ -97,11 +97,11 @@
  <div class="section">
     <div class="container">
         <div class="section-header">
-            <h2>Latest product</h2> {{temp}}
+            <h2>Latest product</h2>
         </div>
         <div class="container " id="latest-products">
             <div class="d-flex justify-content-center align-items-center">
-                <div *ngFor="let product of cardsData; let i = index" class="product-card border me-3"> {{product.id}}
+                <div *ngFor="let product of dataToShowOnCards; let i = index" class="product-card border me-3"> {{product.id}}
                     <div class="product-card-img">
                         <img src="{{product.img1}}" alt="img">
                         <img src="{{product.img2}}" alt="img">
