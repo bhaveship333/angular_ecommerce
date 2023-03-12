@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartdataService } from '../cartdata.service';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from './popup/popup.component';
 
 @Component({
   selector: 'app-home',
@@ -50,22 +52,27 @@ export class HomeComponent implements OnInit {
   // }
   cartDataArray: any = [];
   slides = document.querySelectorAll('.slide')
-  constructor(private data: CartdataService, private http: HttpClient) { }
+  constructor(private data: CartdataService, private http: HttpClient,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    // dialog.open(UserProfileComponent, {
-    //   height: '400px',
-    //   width: '600px',
+    let dialogRef = this.dialog.open(PopupComponent, {
+      height: '800px',
+      width: '600px',
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`); // Pizza!
     // });
+    
+    // dialogRef.close('Pizza!');
 
     this.showSlide()
       this.http.get('https://perfect-gown-bear.cyclic.app/list').subscribe((res)=>{
-        console.log(res);
-        
         this.dataToShowOnCards = res;
       })
     }
 
+    
    
     onAdd(data: any){
       console.log(data);
@@ -86,7 +93,6 @@ export class HomeComponent implements OnInit {
     }
     showSlide = () => {
       this.hideAllSlide()
-      // this.slides[this.slide_index].classList.add('active')
     }
     nextSlide = () => this.slide_index = this.slide_index + 1 === this.slides.length ? 0 : this.slide_index + 1
     prevSlide = () => this.slide_index = this.slide_index - 1 < 0 ? this.slides.length - 1 : this.slide_index - 1
@@ -99,7 +105,4 @@ export class HomeComponent implements OnInit {
       this.prevSlide()
       this.showSlide()
     }
-   
-
-    
 }
