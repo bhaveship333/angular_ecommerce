@@ -26,7 +26,11 @@ export class PopupComponent implements OnInit {
 
   onSkip(){
     localStorage.setItem('popup', this.popupCount + 1);
+    if(Number(localStorage.getItem('popup')) == 3 ){
+      document.cookie = 'hidePopUpforSometime=true; Max-Age=' + 24*60*60;
+    }
   }
+
   onSubmit(){
     console.log(this.signupForm.value);
     

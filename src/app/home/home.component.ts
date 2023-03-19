@@ -55,10 +55,18 @@ export class HomeComponent implements OnInit {
   constructor(private data: CartdataService, private http: HttpClient,public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    let dialogRef = this.dialog.open(PopupComponent, {
-      height: '800px',
-      width: '600px',
-    });
+    let x = document.cookie.split('=');
+    for (let i = 0; i < x.length; i++) {
+        // console.log("conditoin",x[i]);
+        // x[i] == 'hidePopUpforSometime'
+        // cookie agar h to pop up show nhi hona chaiye
+        if(Number(localStorage.getItem('popup')) < 3){
+          let dialogRef = this.dialog.open(PopupComponent, {
+            height: '800px',
+            width: '600px',
+          });
+        }
+      }
 
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`); // Pizza!
