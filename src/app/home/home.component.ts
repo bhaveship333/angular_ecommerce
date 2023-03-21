@@ -12,7 +12,7 @@ import { PopupComponent } from './popup/popup.component';
 export class HomeComponent implements OnInit {
   slide_index = 0
   dataToShowOnCards: any = []
-  slide_play = true
+  slide_play = true;
   // cardsData = [
   //   {
   //     id: 0,
@@ -76,10 +76,19 @@ export class HomeComponent implements OnInit {
 
     this.showSlide()
       this.http.get('https://perfect-gown-bear.cyclic.app/list').subscribe((res)=>{
+        this.loader();
         this.dataToShowOnCards = res;
       })
     }
 
+    loader(){
+      const loading:any = document.querySelector('.loading');
+      const content:any = document.querySelector('.content');
+      setTimeout(() => {
+        loading.style.opacity = "0";
+        content.style.opacity = "1";
+      }, 1000)
+    }
     
    
     onAdd(data: any){

@@ -53,8 +53,15 @@ export class CartComponent implements OnInit {
   constructor(private data: CartdataService, private http: HttpClient) { }
 
   ngOnInit(): void {
-   
+    
     // debugger
+    this.noDataScreen();
+
+    this.showData();
+    localStorage.setItem("arrray", this.arr)
+  }
+
+  noDataScreen(){
     this.data.shareData.subscribe(data => this.cartData = data)
     if(this.cartData.length == 0){
       this.noDataAva = false;
@@ -62,9 +69,16 @@ export class CartComponent implements OnInit {
     else{
       this.noDataAva = true;
     }
-    console.log(this.cartData);
-    this.showData();
-    localStorage.setItem("arrray", this.arr)
+  }
+
+  loader(){
+    
+    const loading:any = document.querySelector('.loading');
+    const content:any = document.querySelector('.content');
+    setTimeout(() => {
+      loading.style.opacity = "0";
+      content.style.opacity = "1";
+    }, 1000)
   }
 
   showData(){
@@ -88,6 +102,7 @@ export class CartComponent implements OnInit {
     //   price2: '$200'
     // }
     this.http.post('https://perfect-gown-bear.cyclic.app/show', this.showingthiscard ).subscribe((res)=>{
+      // this.loader();
       console.log(res);
     })
   }
